@@ -1,0 +1,594 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Beyond All — Notre Histoire</title>
+
+  <!-- Google font (facultatif, remplaçable) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* === RESET / BASE === */
+    :root{
+      --bg:#070606;
+      --card:#0f0f10;
+      --accent:#c22a2a; /* rouge signature */
+      --muted:#bdbdbd;
+      --white:#f4f4f4;
+      --max-width:980px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,var(--bg), #0b0b0b 60%);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:24px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{
+      width:100%;
+      max-width:var(--max-width);
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    /* === HEADER === */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:22px 28px;
+      gap:18px;
+      border-bottom:1px solid rgba(255,255,255,0.03);
+      background:linear-gradient(0deg, rgba(0,0,0,0.2), transparent);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .monogram{
+      width:54px;
+      height:54px;
+      border-radius:8px;
+      background:linear-gradient(135deg,#111,#2a2a2a);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:"Playfair Display", serif;
+      font-weight:700;
+      color:var(--white);
+      box-shadow:0 4px 18px rgba(0,0,0,0.6);
+      border:1px solid rgba(255,255,255,0.04);
+    }
+    .brand h1{
+      margin:0;
+      font-size:14px;
+      letter-spacing:1px;
+      color:var(--white);
+    }
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+    header .mini{
+      font-size:12px;color:var(--muted)
+    }
+
+    /* === HERO === */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      padding:32px;
+      align-items:center;
+    }
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr; padding:20px}
+    }
+
+    .hero-left{
+      padding-right:8px;
+    }
+    .eyebrow{
+      color:var(--accent);
+      font-weight:700;
+      letter-spacing:1px;
+      font-size:12px;
+      text-transform:uppercase;
+    }
+    .title{
+      font-family:"Playfair Display", serif;
+      font-size:36px;
+      margin:10px 0 8px;
+      line-height:1.05;
+      color:var(--white);
+    }
+    .subtitle{
+      color:var(--muted);
+      margin:0 0 18px;
+    }
+    .cta-row{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .btn{
+      background:var(--accent);
+      color:#fff;
+      padding:12px 18px;
+      border-radius:10px;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-block;
+      box-shadow:0 8px 22px rgba(194,42,42,0.18);
+    }
+    .btn.ghost{
+      background:transparent;
+      color:var(--white);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    /* card on right: cover photo */
+    .hero-right{
+      border-radius:12px;
+      overflow:hidden;
+      background:linear-gradient(180deg,#0b0b0b,#141414);
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow:0 10px 40px rgba(0,0,0,0.6);
+      padding:18px;
+    }
+    .cover{
+      width:100%;
+      height:320px;
+      background-size:cover;
+      background-position:center;
+      border-radius:8px;
+      position:relative;
+    }
+    .cover .badge{
+      position:absolute;
+      bottom:12px;
+      left:12px;
+      background:rgba(0,0,0,0.45);
+      padding:8px 12px;
+      border-radius:8px;
+      color:var(--white);
+      font-weight:600;
+      font-size:13px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      border:1px solid rgba(255,255,255,0.04);
+    }
+
+    /* === GALLERY + AUDIO + MESSAGE === */
+    .main{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:28px;
+      padding:28px;
+      border-top:1px solid rgba(255,255,255,0.02);
+    }
+    @media(max-width:1100px){ .main{grid-template-columns:1fr; padding:20px} }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      border-radius:12px;
+      padding:18px;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    /* gallery */
+    .gallery{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .thumb{
+      width:calc(33.333% - 8px);
+      min-width:110px;
+      height:110px;
+      border-radius:8px;
+      background-size:cover;
+      background-position:center;
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    @media(max-width:600px){
+      .thumb{width:48%}
+    }
+
+    /* right column: player + info */
+    .player{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .audio-controls{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .progress{
+      height:6px;
+      background:rgba(255,255,255,0.06);
+      border-radius:6px;
+      overflow:hidden;
+      flex:1;
+    }
+    .progress > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#ff6b6b)}
+
+    /* message / text */
+    .message{
+      margin-top:12px;
+      color:var(--muted);
+      white-space:pre-line;
+    }
+
+    /* footer CTA */
+    footer{
+      padding:18px 28px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      border-top:1px solid rgba(255,255,255,0.02);
+    }
+    footer .small{color:var(--muted);font-size:13px}
+    footer .inline{display:flex;gap:12px;align-items:center}
+
+    /* simple modal for viewer */
+    .modal {
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background:rgba(0,0,0,0.7);
+      z-index:60;
+      padding:18px;
+    }
+    .modal.show{display:flex}
+    .modal .panel{
+      width:100%;
+      max-width:980px;
+      background:#000;
+      border-radius:12px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .panel .media{
+      width:100%;
+      height:560px;
+      background:#111;
+    }
+    @media(max-width:900px){ .panel .media{height:320px} }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .center{text-align:center}
+    .small{font-size:13px;color:var(--muted)}
+    .sr-only{position:absolute;left:-9999px}
+    .signature {
+  font-size: 1.1em;
+  color: #ffcccc;
+  margin-top: -10px;
+  margin-bottom: 40px;
+  font-style: italic;
+}
+/* Logo en bas à droite */
+.logo-bottom-right {
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  width: 80px; /* tu peux ajuster selon la taille du logo */
+  opacity: 0.8; /* discret et élégant */
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.logo-bottom-right:hover {
+  opacity: 1;
+}
+  </style>
+</head>
+<img src="Image/Logo.jpeg" alt="beyond all logo" class="logo-bottom-right">
+<body>
+  <div class="wrap" id="app">
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
+        <div class="monogram" id="logo-monogram">BA</div>
+        <div>
+          <h1 id="brand-name">Beyond All</h1>
+          <p class="signature">Offert par <strong>David</strong> pour <strong>Marcela</strong> 💞</p>
+          <p id="brand-tag">More than a jewel. A story.</p>
+        </div>
+      </div>
+      <div class="mini">
+        <span id="hero-date">—</span>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="eyebrow" id="eyebrow">Memory Edition</div>
+        <h2 class="title" id="page-title">Notre histoire à jamais</h2>
+        <p class="subtitle" id="subtitle">Un bijou, des souvenirs, un instant à revivre.</p>
+
+        <div class="card" style="margin-top:16px;">
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+            <div style="flex:1;min-width:160px">
+              <div class="small muted"></div>Je t'aime
+              <div style="font-weight:700;margin-top:6px" id="from-name">—</div>
+            </div>
+            <div style="min-width:140px">
+              <div class="small muted"></div>Je t'aime
+              <div style="font-weight:700;margin-top:6px" id="to-name">—</div>
+            </div>
+            <div style="flex-basis:100%"></div>
+            <div class="cta-row">
+              <a class="btn" href="souvenir.html">Lire le souvenir</a>
+              <a class="btn ghost" id="download-card" href="./promesses.html">Nos promesses 💌</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="hero-right card">
+        <div class="cover" id="cover-photo" style="background-image:url('Image/Profil\ 1.jpg');">
+          <div class="badge" id="badge-text">Scanne le QR • Revivez</div>
+        </div>
+
+        <div style="display:flex;gap:12px;margin-top:14px;align-items:center;">
+          <div style="flex:1">
+            <div class="small muted">Modèle</div>
+            <div style="font-weight:700" id="product-name">Memory Watch</div>
+          </div>
+          <div style="text-align:right">
+            <div class="small muted">Collection</div>
+            <div style="font-weight:700" id="collection">Love Edition</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- MAIN -->
+    <section class="main">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div class="small muted">Galerie</div>
+            <h3 style="margin:6px 0 12px;font-size:20px">Moments capturés</h3>
+          </div>
+          <div class="small muted">Touchez une image pour agrandir</div>
+        </div>
+
+        <div class="gallery" id="gallery">
+          <!-- thumbs injected by JS -->
+        </div>
+
+        <p class="message" id="lead-text" style="margin-top:16px"></p>
+      </div>
+
+      <aside class="card">
+        <div class="player">
+          <div>
+            <div class="small muted">Musique du couple</div>
+            <div style="font-weight:700" id="song-title">—</div>
+          </div>
+
+          <div class="audio-controls">
+            <button class="btn" id="btn-play">Play</button>
+            <div class="progress" aria-hidden="true">
+              <i id="progress-bar" style="width:0%"></i>
+            </div>
+          </div>
+
+          <audio id="audio" preload="metadata"></audio>
+
+          <div style="margin-top:12px">
+            <div class="small muted">Message</div>
+            <div id="love-note" class="message"></div>
+          </div>
+
+          <div style="margin-top:10px;display:flex;gap:8px;align-items:center;justify-content:center">
+            <a class="btn ghost" id="edit-mode" title="Mode rapide pour modifier">Éditer (rapide)</a>
+            <a class="btn" id="share-btn">Partager</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="small">
+        <div id="footer-copy">© Beyond All — Créez, portez, transcendez.</div>
+      </div>
+      <div class="inline small muted">
+        <div>Page : <span id="page-id">#0001</span></div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <div class="panel">
+      <div style="padding:12px;display:flex;justify-content:flex-end">
+        <button class="btn ghost" id="close-modal">Fermer</button>
+      </div>
+      <div class="media" id="modal-media">
+        <!-- video or image injected here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ===========================
+       === CONTENT (modifie ici) ===
+       ===========================
+       Change ici les textes / images / audio pour chaque couple.
+    */
+    const content = {
+      pageId: "LOVE-001",
+      heroDate: "01 Mai 2026",
+      eyebrow: "Memory Edition",
+      title: "Notre histoire à jamais",
+      subtitle: "Un bijou. Des souvenirs. Un instant à revivre.",
+      from: "Maya",
+      to: "Alex",
+      product: "Memory Watch - Horizon",
+      collection: "Love Edition",
+      coverPhoto: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder",
+      badge: "Scanne le QR • Revivez",
+      gallery: [
+        // remplace ces URLs par les vraies images (ou liens CDN)
+        ""https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder","
+        "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder",
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder",
+        "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder",
+        "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder",
+        "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder"
+      ],
+      leadText: "Chaque instant passé ensemble mérite d'être revu. J'ai rassemblé nos photos et vidéos les plus précieux pour que tu puisses les revoir à n'importe quel moment.",
+      audio: {
+        src: "", // met ici l'URL d'un mp3 si tu veux musique intégrée
+        title: "Notre chanson"
+      },
+      message: "Mon amour,\n\nChaque seconde avec toi me rappelle pourquoi je souris. Garde cette montre près de toi, et revois nos meilleurs moments quand tu en as besoin.\n\n— Maya",
+      cardDownloadUrl: "" // si tu veux fournir un PDF/carte téléchargeable
+    };
+
+    /* ====== NO TOUCH sous ce commentaire sauf si tu sais ce que tu fais ====== */
+
+    // Inject content into page
+    document.getElementById('page-id').innerText = content.pageId || "#0001";
+    document.getElementById('hero-date').innerText = content.heroDate || "";
+    document.getElementById('eyebrow').innerText = content.eyebrow || "";
+    document.getElementById('page-title').innerText = content.title || "";
+    document.getElementById('subtitle').innerText = content.subtitle || "";
+    document.getElementById('from-name').innerText = content.from || "—";
+    document.getElementById('to-name').innerText = content.to || "—";
+    document.getElementById('product-name').innerText = content.product || "";
+    document.getElementById('collection').innerText = content.collection || "";
+    document.getElementById('cover-photo').style.backgroundImage = url('${content.coverPhoto}');
+    document.getElementById('badge-text').innerText = content.badge || "Scanne le QR • Revivez";
+    document.getElementById('lead-text').innerText = content.leadText || "";
+    document.getElementById('song-title').innerText = content.audio.title || "—";
+    document.getElementById('love-note').innerText = content.message || "";
+    if(content.cardDownloadUrl){
+      document.getElementById('download-card').href = content.cardDownloadUrl;
+    } else {
+      document.getElementById('download-card').style.display = 'none';
+    }
+
+    // build gallery
+    const gallery = document.getElementById('gallery');
+    content.gallery.forEach((src, i) => {
+      const div = document.createElement('div');
+      div.className = 'thumb';
+      div.style.backgroundImage = url('${src}');
+      div.addEventListener('click', ()=> openModalWithMedia(src,'image'));
+      gallery.appendChild(div);
+    });
+
+    // audio controls
+    const audio = document.getElementById('audio');
+    const btnPlay = document.getElementById('btn-play');
+    const progressBar = document.getElementById('progress-bar');
+    if(content.audio.src){
+      audio.src = content.audio.src;
+      btnPlay.addEventListener('click', ()=>{
+        if(audio.paused){ audio.play(); btnPlay.innerText='Pause' } else { audio.pause(); btnPlay.innerText='Play' }
+      });
+      audio.addEventListener('timeupdate', ()=>{
+        const p = (audio.currentTime / (audio.duration || 1)) * 100;
+        progressBar.style.width = p + '%';
+      });
+    } else {
+      btnPlay.style.display = 'none';
+    }
+
+    // hero play button opens first gallery item or video
+    document.getElementById('play-hero').addEventListener('click', ()=>{
+      if(content.gallery.length>0) openModalWithMedia(content.gallery[0],'image');
+      else if(content.audio.src) { audio.play(); btnPlay.innerText='Pause'; }
+      else alert('Aucun contenu média pour l\'instant.');
+    });
+
+    // modal logic
+    const modal = document.getElementById('modal');
+    const modalMedia = document.getElementById('modal-media');
+    document.getElementById('close-modal').addEventListener('click', closeModal);
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+    function openModalWithMedia(src,type='image'){
+      modalMedia.innerHTML = '';
+      if(type==='image'){
+        const img = document.createElement('img');
+        img.src = src;
+        img.style.width='100%';
+        img.style.height='100%';
+        img.style.objectFit='cover';
+        modalMedia.appendChild(img);
+      } else if(type==='video'){
+        const v = document.createElement('video');
+        v.src=src; v.controls=true; v.autoplay=true;
+        v.style.width='100%'; v.style.height='100%'; v.style.objectFit='cover';
+        modalMedia.appendChild(v);
+      }
+      modal.classList.add('show');
+    }
+    function closeModal(){
+      modal.classList.remove('show');
+      modalMedia.innerHTML = '';
+    }
+
+    // share (simple)
+    document.getElementById('share-btn').addEventListener('click', async ()=>{
+      const url = location.href;
+      if(navigator.share){
+        try{ await navigator.share({title: content.title, text: content.subtitle, url}); }catch(e){}
+      } else {
+        prompt('Copie ce lien pour le partager :', url);
+      }
+    });
+
+    // edit-mode quick: open a prompt to change the title (utile si tu veux modifier sur tablette)
+    document.getElementById('edit-mode').addEventListener('click', ()=>{
+      const newTitle = prompt('Modifier le titre principal', content.title);
+      if(newTitle!==null){ content.title=newTitle; document.getElementById('page-title').innerText=newTitle; }
+    });
+
+    // small nicety: set monogram from initials of "from" and "to"
+    (function setMonogram(){
+      const a = (content.from||'').trim().charAt(0) || 'B';
+      const b = (content.to||'').trim().charAt(0) || 'A';
+      document.getElementById('logo-monogram').innerText = (a+b).toUpperCase();
+    })();
+
+    // keyboard ESC to close modal
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+    /* ========== Deployment tips ==========
+       - Hébergement simple : Netlify / Vercel / GitHub Pages.
+       - Pour le QR : génère une URL courte vers la page (Bitly) et grave le QR qui pointe vers cette URL.
+       - Pour la confidentialité : si tu veux une page privée,
+         utilises un slug unique (ex: /story/LOVE-001) non listé, ou protège par mot de passe sur ton server.
+       - Images lourdes ? héberge sur un CDN (Cloudinary, Imgur, ou storage) pour des temps de chargement rapides.
+    */
+  </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nos Promesses — Beyond All</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #0a0a0a 0%, #000 100%);
+      color: #f5f5f5;
+      font-family: "Playfair Display", serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+      flex-direction: column;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #ffcccc;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease forwards;
+    }
+    .promise {
+      opacity: 0;
+      font-size: 1.2rem;
+      color: #ddd;
+      max-width: 600px;
+      line-height: 1.6;
+      animation: slideIn 1s ease forwards;
+      animation-delay: var(--delay);
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes slideIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .logo {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 70px;
+      opacity: 0.5;
+    }
+    body {
+  background: linear-gradient(to bottom right, #000000, #330000);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#beyond-logo {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  width: 90px;
+  opacity: 0.7;
+}
+
+.titre {
+  font-size: 2.5em;
+  margin-top: 80px;
+  color: #ff3355;
+  text-shadow: 0 0 10px #ff0033;
+}
+
+.promesse {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.5s ease;
+  font-size: 1.3em;
+  margin: 25px 0;
+}
+
+.promesse.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#toggleMusic {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: rgba(255, 50, 70, 0.8);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#toggleMusic:hover {
+  background-color: rgba(255, 50, 70, 1);
+}
+  </style>
+</head>
+<body>
+  <!-- ===== Logo Beyond All ===== -->
+  <img src="Image/Logo.jpeg" alt="Beyond All Logo" id="beyond-logo">
+
+  <!-- ===== Contenu principal ===== -->
+  <div class="promesses-container">
+    <h1 class="titre">Nos Promesses</h1>
+
+    <div class="promesse">
+      <p>💍 Promesse 1 : Toujours croire en nous, même quand tout semble flou.</p>
+    </div>
+    <div class="promesse">
+      <p>💫 Promesse 2 : Ne jamais oublier d’où vient notre amour.</p>
+    </div>
+    <div class="promesse">
+      <p>🔥 Promesse 3 : Protéger ce lien comme un trésor, au-delà du temps.</p>
+    </div>
+  </div>
+
+  <!-- ===== Musique d’ambiance ===== -->
+  <audio id="loveMusic" autoplay loop>
+    <source src="Image/Allofme mp3.mp3" type="audio/mpeg">
+    Ton navigateur ne supporte pas l’audio 😢
+  </audio>
+
+  <!-- ===== Bouton musique ===== -->
+  <button id="toggleMusic">🎶 Pause</button>
+
+  <!-- ===== Animation et script ===== -->
+  <script>
+    // Animation des promesses
+    const promesses = document.querySelectorAll('.promesse');
+    promesses.forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 1200);
+    });
+
+    // Musique
+    const music = document.getElementById('loveMusic');
+    const btn = document.getElementById('toggleMusic');
+    btn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        btn.textContent = '🎶 Pause';
+      } else {
+        music.pause();
+        btn.textContent = '🎵 Lecture';
+      }
+    });
+  </script>
+</body>
+</html>
